@@ -3,29 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page B</title>
+    <title>Page A</title>
 </head>
 <body>
-    <h1>Page B</h1>
-    <pre id="content"></pre>
+    <h1>Page A</h1>
+    <textarea id="content" rows="10" cols="30"></textarea><br>
+    <button onclick="saveContent()">保存</button>
 
     <script>
-        async function loadContent() {
-            const response = await fetch('https://api.github.com/repos/yourusername/my-content-repo/contents/content.txt', {
-                method: 'GET',
+        async function saveContent() {
+            const content = document.getElementById('content').value;
+            const response = await fetch('https://api.github.com/repos/wumingdeczy/my-content-repo/contents/content.txt', {
+                method: 'PUT',
                 headers: {
+                    'Content-Type': 'application/json',
                     'Authorization': 'token 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'
-                }
+                },
+                body: JSON.stringify({
+                    message: 'Update content.txt',
+                    content: btoa(content)
+                })
             });
             if (response.ok) {
-                const data = await response.json();
-                const content = atob(data.content);
-                document.getElementById('content').textContent = content;
+                alert('内容已保存！');
             } else {
-                alert('读取失败！');
+                alert('保存失败！');
             }
         }
-        loadContent();
     </script>
 </body>
 </html>
