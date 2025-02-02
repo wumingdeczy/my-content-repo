@@ -13,7 +13,7 @@
     <script>
         async function saveContent() {
             const content = document.getElementById('content').value;
-            const response = await fetch('https://api.github.com/repos/wumingdeczy/my-content-repo/contents/content.txt', {
+            const response = await fetch('https://api.github.com/repos/wumingdeczy/my-content-repo/content.txt', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
