@@ -3,19 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>网站 A - 写内容</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        textarea { width: 100%; height: 200px; margin-bottom: 10px; }
-        button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
-    </style>
+    <title>Page B</title>
 </head>
 <body>
-    <h1>网站 A - 写内容</h1>
-    <textarea id="content-input" placeholder="在这里输入内容..."></textarea>
-    <button id="save-button">保存到 GitHub</button>
-    <p id="status"></p>
+    <h1>Page B</h1>
+    <pre id="content"></pre>
 
-    <script src="script.js"></script>
+    <script>
+        async function loadContent() {
+            const response = await fetch('https://api.github.com/repos/yourusername/my-content-repo/contents/content.txt', {
+                method: 'GET',
+                headers: {
+                    'Authorization': 'token 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'
+                }
+            });
+            if (response.ok) {
+                const data = await response.json();
+                const content = atob(data.content);
+                document.getElementById('content').textContent = content;
+            } else {
+                alert('读取失败！');
+            }
+        }
+        loadContent();
+    </script>
 </body>
 </html>
