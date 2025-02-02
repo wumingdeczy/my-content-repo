@@ -1,5 +1,5 @@
 // 配置
-const GITHUB_TOKEN = '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'; // 替换为你的 GitHub PAT
+const GITHUB_TOKEN = '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'; // 替换为你的 GitHub PAT
 const REPO_OWNER = 'wumingdeczy'; // 替换为你的 GitHub 用户名
 const REPO_NAME = 'my-content-repo'; // 替换为你的仓库名
 const FILE_PATH = 'content.txt'; // 文件路径
